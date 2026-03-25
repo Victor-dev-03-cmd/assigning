@@ -10,7 +10,7 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const navLinks = [
-    { name: "Explore", href: "#" },
+    { name: "Explore", href: "/tasks" },
     { name: "How it Works", href: "#" },
     { name: "Pricing", href: "#" },
     { name: "Support", href: "#" },
@@ -20,7 +20,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full h-[80px] bg-white/80 backdrop-blur-md border-b border-slate-100 flex items-center px-6 md:px-12 font-sans">
       {/* Left Section: Branding */}
       <div className="flex-1 flex items-center">
-        <Link href="/" className="text-2xl font-bold transition-transform hover:scale-105 active:scale-95 flex items-center font-sans">
+        <Link href="/" className="text-3xl font-bold transition-transform hover:scale-105 active:scale-95 flex items-center font-sans">
           <span className="text-[#6C3BAA]">Assigne</span>
           <span className="text-[#A379D9]">.app</span>
         </Link>
@@ -46,7 +46,7 @@ const Header = () => {
           <>
             <Link 
               href="/post"
-              className="flex items-center space-x-2 bg-brand-primary text-white px-4 py-2 rounded font-bold text-sm transition-all hover:bg-brand-dark active:scale-95 shadow-sm"
+              className="flex items-center space-x-2 bg-brand-primary text-white px-4 py-2 rounded text-sm transition-all hover:bg-brand-dark active:scale-95 shadow-sm"
             >
               <Plus className="w-4 h-4" />
               <span className="hidden sm:inline">Post Project</span>
