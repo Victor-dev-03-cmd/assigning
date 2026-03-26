@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { 
   FileText, 
   Users, 
@@ -77,7 +77,7 @@ const freelancerSteps = [
 const StepItem = ({ step, index, isFlipped }: { step: any, index: number, isFlipped: boolean }) => {
   const isRight = isFlipped;
   
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -88,7 +88,7 @@ const StepItem = ({ step, index, isFlipped }: { step: any, index: number, isFlip
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
@@ -97,7 +97,7 @@ const StepItem = ({ step, index, isFlipped }: { step: any, index: number, isFlip
     }
   };
 
-  const visualVariants = {
+  const visualVariants: Variants = {
     hidden: { opacity: 0, scale: 0.9, x: isRight ? -50 : 50 },
     visible: { 
       opacity: 1, 

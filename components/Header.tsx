@@ -18,7 +18,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full h-[80px] bg-white/80 backdrop-blur-md border-b border-slate-100 flex items-center px-6 md:px-12 font-sans">
+    <header className="sticky top-0 z-50 w-full h-[80px] bg-white backdrop-blur-md border-b border-slate-100 flex items-center px-6 md:px-12 font-sans">
       {/* Left Section: Branding */}
       <div className="flex-1 flex items-center">
         <Link href="/" className="text-3xl font-bold transition-transform hover:scale-105 active:scale-95 flex items-center font-sans">
