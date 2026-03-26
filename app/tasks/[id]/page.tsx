@@ -7,7 +7,7 @@ import {
   GraduationCap, 
   Clock, 
   DollarSign, 
-  ShieldCheck, 
+  Shield, 
   FileText, 
   Lock, 
   ArrowRight,
@@ -156,7 +156,7 @@ const TaskDetailsPage = () => {
                 <div className="flex items-center justify-between">
                   <h3 className="text-xs text-slate-400 uppercase tracking-[0.2em]">Attached Requirements</h3>
                   <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-50 text-emerald-600 rounded text-[10px]">
-                    <ShieldCheck className="w-3 h-3" />
+                    <Shield className="w-3 h-3" />
                     VIEW ONLY PROTECTED
                   </div>
                 </div>
@@ -332,7 +332,7 @@ const TaskDetailsPage = () => {
             {/* Support Box */}
             <div className="p-6 bg-slate-900 rounded text-white space-y-4">
               <h4 className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                <Shield className="w-5 h-5 text-emerald-400" />
                 Assigne Protection
               </h4>
               <p className="text-xs text-slate-300 font-medium leading-relaxed">

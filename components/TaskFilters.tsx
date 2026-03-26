@@ -7,7 +7,7 @@ import {
   GraduationCap, 
   Layers, 
   DollarSign, 
-  Timer,
+  Clock,
   CheckCircle2,
   X
 } from "lucide-react";
@@ -120,7 +120,7 @@ const TaskFilters = () => {
       <div className="pt-6 border-t border-slate-50">
         <label className="flex items-center justify-between cursor-pointer group">
           <div className="flex items-center gap-2 text-slate-600 font-bold uppercase text-[10px] tracking-widest">
-            <Timer className="w-4 h-4" />
+            <Clock className="w-4 h-4" />
             <span>Urgent (24h)</span>
           </div>
           <div 

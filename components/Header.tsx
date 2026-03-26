@@ -13,6 +13,7 @@ const Header = () => {
     { name: "Explore", href: "/tasks" },
     { name: "How it Works", href: "/how-it-works" },
     { name: "Pricing", href: "/pricing" },
+    ...(isLoggedIn ? [{ name: "Dashboard", href: "/dashboard" }] : []),
     { name: "Support", href: "#" },
   ];
 
@@ -73,7 +74,7 @@ const Header = () => {
               {/* Dropdown Menu */}
               <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-slate-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 font-sans">
                 <Link href="/dashboard" className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 transition-colors">Dashboard</Link>
-                <Link href="/settings" className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 transition-colors">Settings</Link>
+                <Link href="/dashboard/settings" className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 transition-colors">Settings</Link>
                 <button 
                   onClick={() => setIsLoggedIn(false)}
                   className="w-full text-left block px-4 py-2 text-sm text-red-600 hover:bg-slate-50 transition-colors"

@@ -10,7 +10,7 @@ import {
   Wallet, 
   Search, 
   Lock, 
-  ShieldCheck, 
+  Shield, 
   Cpu, 
   Zap,
   Timer,
@@ -77,117 +77,138 @@ const freelancerSteps = [
 const StepItem = ({ step, index, isFlipped }: { step: any, index: number, isFlipped: boolean }) => {
   const isRight = isFlipped;
   
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+
+  const visualVariants = {
+    hidden: { opacity: 0, scale: 0.9, x: isRight ? -50 : 50 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      x: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
+  
   return (
-    <div className={`flex flex-col ${isRight ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-12 md:gap-24 py-20 overflow-hidden`}>
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      className={`flex flex-col ${isRight ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-12 md:gap-24 py-20 overflow-hidden`}
+    >
       {/* Content Side */}
-      <motion.div 
-        initial={{ opacity: 0, x: isRight ? 100 : -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="flex-1 space-y-8"
-      >
-        <div className="space-y-4">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="flex items-center gap-6"
-          >
-            <div className={`w-16 h-16 rounded flex items-center justify-center text-white shadow-xl ${step.color} ring-4 ring-white`}>
+      <div className="flex-1 space-y-8">
+        <motion.div variants={itemVariants} className="space-y-4">
+          <div className="flex items-center gap-6">
+            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-xl ${step.color} ring-4 ring-white`}>
               <step.icon className="w-8 h-8" />
             </div>
             <div className="flex flex-col">
-              <span className="text-slate-400 font-black text-6xl leading-none opacity-40">0{index + 1}</span>
+              <span className="text-slate-400 font-black text-6xl leading-none opacity-20">0{index + 1}</span>
             </div>
-          </motion.div>
+          </div>
           
-          <motion.h3 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="text-4xl text-slate-800 tracking-tight"
-          >
+          <h3 className="text-4xl text-slate-800 tracking-tight font-black font-poppins">
             {step.title}
-          </motion.h3>
-        </div>
+          </h3>
+        </motion.div>
 
         <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="text-xl text-slate-600 leading-relaxed max-w-xl"
+          variants={itemVariants}
+          className="text-xl text-slate-600 leading-relaxed max-w-xl font-medium"
         >
           {step.description}
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, width: 0 }}
-          whileInView={{ opacity: 1, width: "100px" }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className={`h-1.5 rounded-full ${step.color}`}
+          variants={itemVariants}
+          className={`h-1.5 rounded-full ${step.color} w-24 shadow-sm`}
         />
-      </motion.div>
+        
+        <motion.div variants={itemVariants} className="pt-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-full border border-slate-100 text-[10px] font-black uppercase tracking-widest text-slate-400">
+             <Shield className="w-3.5 h-3.5" />
+             Verified Process
+          </div>
+        </motion.div>
+      </div>
 
       {/* Visual Side */}
       <motion.div 
-        initial={{ opacity: 0, x: isRight ? -100 : 100, scale: 0.8 }}
-        whileInView={{ opacity: 1, x: 0, scale: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        variants={visualVariants}
         className="flex-1 w-full flex justify-center relative"
       >
         <div className="relative group">
           {/* Decorative Background Elements */}
-          <div className={`absolute -inset-4 ${step.color} opacity-10 blur-3xl rounded-full group-hover:opacity-20 transition-opacity duration-700`}></div>
+          <div className={`absolute -inset-10 ${step.color} opacity-5 blur-3xl rounded-full group-hover:opacity-10 transition-opacity duration-700`}></div>
           
-          <div className={`relative w-full max-w-md aspect-square rounded-[3rem] overflow-hidden border border-slate-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] bg-white flex items-center justify-center transition-transform duration-500 group-hover:scale-[1.02]`}>
-             <div className="absolute inset-0 opacity-[0.05]" 
-                  style={{ backgroundImage: 'radial-gradient(#5411AB 0.5px, transparent 0.5px)', backgroundSize: '32px 32px' }}>
+          <div className="relative w-full max-w-md aspect-[4/3] rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] bg-white flex items-center justify-center transition-all duration-500 group-hover:shadow-[0_48px_80px_-20px_rgba(0,0,0,0.12)]">
+             <div className="absolute inset-0 opacity-[0.03]" 
+                  style={{ backgroundImage: 'radial-gradient(#5411AB 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}>
              </div>
              
-             {/* Dynamic Visual Content */}
-             <div className="relative z-10 p-12 text-center space-y-8">
-                <motion.div 
-                  animate={{ 
-                    y: [0, -15, 0],
-                    rotate: [0, 5, 0]
-                  }}
-                  transition={{ 
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className={`w-28 h-28 mx-auto rounded-[2.5rem] ${step.color} shadow-2xl flex items-center justify-center`}
-                >
-                   <step.icon className="w-12 h-12 text-white" />
-                </motion.div>
+             {/* Mock UI Element */}
+             <div className="relative z-10 w-full px-12 space-y-8">
+                <div className="flex items-center gap-4 border-b border-slate-50 pb-6">
+                   <div className={`w-12 h-12 rounded-xl ${step.color} shadow-lg flex items-center justify-center`}>
+                      <step.icon className="w-6 h-6 text-white" />
+                   </div>
+                   <div className="space-y-1.5">
+                      <div className="h-2.5 w-32 bg-slate-100 rounded-full"></div>
+                      <div className="h-2 w-20 bg-slate-50 rounded-full"></div>
+                   </div>
+                </div>
                 
                 <div className="space-y-3">
-                  <div className="h-3 w-48 bg-slate-100 mx-auto rounded-full"></div>
-                  <div className="h-3 w-36 bg-slate-50 mx-auto rounded-full"></div>
+                  <div className="h-2.5 w-full bg-slate-50 rounded-full"></div>
+                  <div className="h-2.5 w-[90%] bg-slate-50 rounded-full"></div>
+                  <div className="h-2.5 w-[70%] bg-slate-50 rounded-full"></div>
+                </div>
+
+                <div className="pt-4 flex justify-between items-center">
+                   <div className="flex -space-x-2">
+                      {[...Array(3)].map((_, i) => (
+                        <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-slate-100"></div>
+                      ))}
+                   </div>
+                   <div className={`w-24 h-8 rounded-lg ${step.color} opacity-20`}></div>
                 </div>
              </div>
 
-             {/* Animated Accents */}
+             {/* Floating Accent */}
              <motion.div 
-               animate={{ opacity: [0.2, 0.5, 0.2], scale: [1, 1.2, 1] }}
-               transition={{ duration: 3, repeat: Infinity }}
-               className={`absolute top-10 right-10 w-4 h-4 rounded-full ${step.color} opacity-20`}
-             />
-             <motion.div 
-               animate={{ opacity: [0.2, 0.5, 0.2], scale: [1, 1.2, 1] }}
-               transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-               className={`absolute bottom-12 left-12 w-6 h-6 rounded-full ${step.color} opacity-20`}
-             />
+               animate={{ 
+                 y: [0, -10, 0],
+                 rotate: [0, 5, 0]
+               }}
+               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+               className={`absolute top-8 right-8 w-12 h-12 rounded-xl bg-white shadow-xl flex items-center justify-center border border-slate-100`}
+             >
+                <div className={`w-2 h-2 rounded-full ${step.color}`}></div>
+             </motion.div>
           </div>
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -298,7 +319,7 @@ export default function HowItWorksPage() {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center space-y-4 mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary/20 text-brand-accent rounded text-xs uppercase tracking-widest border border-brand-primary/30">
-              <ShieldCheck className="w-4 h-4" />
+              <Shield className="w-4 h-4" />
               Safety First
             </div>
             <h2 className="text-4xl md:text-5xl">Our Security Technology</h2>
