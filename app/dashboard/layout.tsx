@@ -52,7 +52,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <aside className="w-16 md:w-64 bg-slate-50/80 backdrop-blur-md border-r border-slate-200 flex flex-col sticky top-0 h-screen z-50 transition-all duration-300">
           <div className="h-[60px] flex items-center px-6 border-b border-slate-200">
             <Link href="/" className="flex items-center gap-2 font-bold tracking-tight">
-              <div className="w-8 h-8 bg-slate-900 rounded flex items-center justify-center text-white shrink-0 shadow-lg shadow-slate-900/10">A</div>
+              <div className="w-8 h-8 bg-brand-primary rounded flex items-center justify-center text-white shrink-0 shadow-lg shadow-brand-primary/10">A</div>
               <span className="text-slate-900 md:inline hidden">Assigne.app</span>
             </Link>
           </div>
@@ -66,11 +66,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   href={link.href}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-md transition-all text-sm font-medium group relative ${
                     isActive 
-                      ? "bg-white/50 text-slate-900 border-l-4 border-slate-900 shadow-sm" 
-                      : "text-slate-500 hover:bg-white/30 hover:text-slate-900 border-l-4 border-transparent"
+                      ? "bg-white/50 text-brand-primary border-l-4 border-brand-primary shadow-sm" 
+                      : "text-slate-500 hover:bg-white/30 hover:text-brand-primary border-l-4 border-transparent"
                   }`}
                 >
-                  <link.icon className={`w-4 h-4 shrink-0 ${isActive ? "text-slate-900" : ""}`} />
+                  <link.icon className={`w-4 h-4 shrink-0 ${isActive ? "text-brand-primary" : ""}`} />
                   <span className="md:inline hidden">{link.name}</span>
                   {!isActive && (
                     <div className="md:hidden absolute left-full ml-2 px-2 py-1 bg-slate-900 text-white text-[10px] rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50">
@@ -100,7 +100,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <button 
                     onClick={() => setRole("student")}
                     className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center gap-2 ${
-                      role === "student" ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-700"
+                      role === "student" ? "bg-white text-brand-primary shadow-sm" : "text-slate-500 hover:text-slate-700"
                     }`}
                   >
                     Student
@@ -108,7 +108,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <button 
                     onClick={() => setRole("freelancer")}
                     className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center gap-2 ${
-                      role === "freelancer" ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-700"
+                      role === "freelancer" ? "bg-white text-brand-primary shadow-sm" : "text-slate-500 hover:text-slate-700"
                     }`}
                   >
                     Expert
@@ -116,7 +116,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                </div>
                <button 
                 onClick={() => setRole(role === "student" ? "freelancer" : "student")}
-                className="hidden md:flex items-center gap-2 text-[10px] font-bold text-slate-400 hover:text-slate-900 transition-colors uppercase tracking-widest"
+                className="hidden md:flex items-center gap-2 text-[10px] font-bold text-slate-400 hover:text-brand-primary transition-colors uppercase tracking-widest"
                >
                  <ArrowLeftRight className="w-3 h-3" />
                  Quick Switch
@@ -125,14 +125,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
             <div className="flex items-center gap-4">
               {role === "freelancer" && (
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 rounded-md border border-slate-200">
-                  <Coins className="w-3.5 h-3.5 text-slate-600" />
-                  <span className="text-slate-900 font-bold text-xs">{credits} Credits</span>
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-brand-primary/10 rounded-md border border-brand-primary/20">
+                  <Coins className="w-3.5 h-3.5 text-brand-primary" />
+                  <span className="text-brand-primary font-bold text-xs">{credits} Credits</span>
                 </div>
               )}
 
               <div className="relative cursor-pointer p-2 hover:bg-slate-100 rounded-md transition-colors group">
-                <Bell className="w-4 h-4 text-slate-500 group-hover:text-slate-900" />
+                <Bell className="w-4 h-4 text-slate-500 group-hover:text-brand-primary" />
                 <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-brand-primary rounded-full border border-white"></span>
               </div>
 
@@ -144,7 +144,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     <span className="text-[10px] font-medium text-slate-500 uppercase">Online</span>
                   </div>
                 </div>
-                <div className="w-8 h-8 rounded-full border border-slate-200 bg-slate-50 flex items-center justify-center text-xs font-bold text-slate-900 cursor-pointer hover:bg-slate-100 transition-colors">
+                <div className="w-8 h-8 rounded-full border border-slate-200 bg-slate-50 flex items-center justify-center text-xs font-bold text-slate-900 cursor-pointer hover:bg-slate-100 hover:text-brand-primary transition-colors">
                   U1
                 </div>
               </div>
@@ -163,7 +163,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </p>
                   </div>
                   {role === "student" && (
-                    <Link href="/post" className="bg-slate-900 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-slate-800 transition-colors shadow-sm inline-flex items-center gap-2">
+                    <Link href="/post" className="bg-brand-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-brand-dark transition-colors shadow-sm inline-flex items-center gap-2">
                        <Plus className="w-4 h-4" />
                        New Assignment
                     </Link>

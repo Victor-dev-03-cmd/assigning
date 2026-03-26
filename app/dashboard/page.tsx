@@ -104,7 +104,7 @@ const CardContent = ({ children, className = "" }: { children: React.ReactNode, 
 
 const Badge = ({ children, variant = "default", className = "" }: { children: React.ReactNode, variant?: "default" | "outline" | "secondary" | "destructive" | "success" | "brand", className?: string }) => {
   const variants = {
-    default: "bg-slate-900 text-white hover:bg-slate-900/80",
+    default: "bg-brand-primary text-white hover:bg-brand-dark",
     outline: "text-slate-950 border border-slate-200",
     secondary: "bg-slate-100 text-slate-900 hover:bg-slate-100/80",
     destructive: "bg-red-500 text-white hover:bg-red-500/80",
@@ -112,7 +112,7 @@ const Badge = ({ children, variant = "default", className = "" }: { children: Re
     brand: "bg-brand-primary/10 text-brand-primary border border-brand-primary/20",
   };
   return (
-    <div className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide transition-colors focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 ${variants[variant]} ${className}`}>
+    <div className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide transition-colors focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 ${variants[variant]} ${className}`}>
       {children}
     </div>
   );
@@ -311,7 +311,7 @@ const FreelancerDashboard = () => (
                       <Timer className={`w-4 h-4 ${deadline.urgency === "High" ? "text-red-500" : "text-slate-500"}`} />
                       <span className="text-sm font-bold text-slate-900">{deadline.timeLeft}</span>
                     </div>
-                    <button className="flex-1 sm:flex-none bg-slate-900 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-slate-800 transition-colors inline-flex items-center gap-2">
+                    <button className="flex-1 sm:flex-none bg-brand-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-brand-dark transition-colors inline-flex items-center gap-2">
                       <FileUp className="w-4 h-4" /> Upload
                     </button>
                   </div>
@@ -342,7 +342,7 @@ const FreelancerDashboard = () => (
             {activityFeed.map((activity, idx) => (
               <div key={idx} className="flex items-start gap-4">
                 <div className={`mt-1 p-2 rounded-lg shrink-0 ${
-                  activity.type === "bid" ? "bg-blue-500" : activity.type === "payment" ? "bg-emerald-500" : "bg-amber-500"
+                  activity.type === "bid" ? "bg-brand-primary" : activity.type === "payment" ? "bg-emerald-500" : "bg-amber-500"
                 }`}>
                   {activity.type === "bid" ? <TrendingUp className="w-4 h-4 text-white" /> : activity.type === "payment" ? <Wallet className="w-4 h-4 text-white" /> : <AlertCircle className="w-4 h-4 text-white" />}
                 </div>
@@ -352,7 +352,7 @@ const FreelancerDashboard = () => (
                 </div>
               </div>
             ))}
-            <button className="w-full mt-4 text-xs font-bold text-slate-500 hover:text-slate-900 transition-colors uppercase tracking-widest">
+            <button className="w-full mt-4 text-xs font-bold text-slate-400 hover:text-brand-primary transition-colors uppercase tracking-widest">
               View full history
             </button>
           </CardContent>
