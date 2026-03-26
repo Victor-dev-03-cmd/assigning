@@ -12,11 +12,11 @@ import {
   Wallet, 
   CheckCircle2,
   MessageSquare, 
-  User, 
+  User,
+  Shield, 
   ChevronRight,
   Info,
   ShieldCheck,
-  Shield,
   AlertCircle
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -137,7 +137,7 @@ export default function MessagesPage() {
             <input 
               type="text" 
               placeholder="Search conversations..." 
-              className="w-full pl-10 pr-4 py-2 bg-slate-100 border-none rounded text-sm focus:ring-1 focus:ring-brand-primary/20 transition-all outline-none font-inter"
+              className="w-full pl-10 pr-4 py-2 bg-slate-100 border-none rounded text-sm focus:ring-1 focus:ring-brand-primary transition-all outline-none"
             />
           </div>
         </div>
@@ -152,7 +152,7 @@ export default function MessagesPage() {
               }`}
             >
               <div className="relative shrink-0">
-                <div className="w-12 h-12 rounded-full bg-slate-200 border-2 border-white shadow-sm flex items-center justify-center text-slate-500 font-bold overflow-hidden font-poppins">
+                <div className="w-12 h-12 rounded-full bg-slate-200 border-2 border-white shadow-sm flex items-center justify-center text-slate-500 overflow-hidden">
                   <User className="w-6 h-6" />
                 </div>
                 {contact.online && (
@@ -162,10 +162,10 @@ export default function MessagesPage() {
               
               <div className="flex-1 text-left min-w-0">
                 <div className="flex justify-between items-start mb-1">
-                  <span className="font-bold text-slate-900 group-hover:text-brand-primary transition-colors truncate font-poppins text-sm tracking-tight">
+                  <span className="text-slate-800 group-hover:text-brand-primary transition-colors truncate text-sm tracking-tight">
                     {contact.name}
                   </span>
-                  <span className="text-[10px] font-medium text-slate-400 whitespace-nowrap font-inter">
+                  <span className="text-[10px] text-slate-400 whitespace-nowrap">
                     {contact.time}
                   </span>
                 </div>
@@ -178,13 +178,13 @@ export default function MessagesPage() {
               </div>
 
               {contact.unread > 0 && (
-                <div className="absolute right-4 bottom-4 w-5 h-5 bg-brand-primary rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-sm">
+                <div className="absolute right-4 bottom-4 w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-sm">
                   {contact.unread}
                 </div>
               )}
 
               {selectedContact?.id === contact.id && (
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-primary rounded-r-full"></div>
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-600 rounded-r-full"></div>
               )}
             </button>
           ))}
@@ -198,7 +198,7 @@ export default function MessagesPage() {
             {/* Chat Header */}
             <header className="p-4 border-b border-slate-200 flex items-center justify-between bg-white/80 backdrop-blur-md sticky top-0 z-20">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary font-black font-poppins">
+                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-black font-poppins">
                   {selectedContact.id.charAt(0)}
                 </div>
                 <div>
@@ -211,7 +211,7 @@ export default function MessagesPage() {
                       </span>
                     </div>
                   </div>
-                  <button className="flex items-center gap-1 mt-1 text-xs font-bold text-brand-primary hover:underline text-left font-poppins">
+                  <button className="flex items-center gap-1 mt-1 text-xs font-bold text-blue-600 hover:underline text-left font-poppins">
                     {selectedContact.taskTitle} <ExternalLink className="w-3 h-3" />
                   </button>
                 </div>
@@ -233,16 +233,16 @@ export default function MessagesPage() {
                   >
                     {msg.type === "system" ? (
                       <div className="w-full flex justify-center py-2">
-                        <div className="bg-brand-primary/5 border border-brand-primary/10 px-4 py-2 rounded-xl flex items-center gap-2 shadow-sm backdrop-blur-sm font-poppins uppercase tracking-widest text-[10px]">
-                          <AlertCircle className="w-3 h-3 text-brand-primary" />
-                          <span className="text-brand-primary font-bold">{msg.text}</span>
+                        <div className="bg-blue-50/80 border border-blue-100 px-4 py-2 rounded-xl flex items-center gap-2 shadow-sm backdrop-blur-sm font-poppins uppercase tracking-widest text-[10px]">
+                          <AlertCircle className="w-3 h-3 text-blue-600" />
+                          <span className="text-blue-800 font-bold">{msg.text}</span>
                         </div>
                       </div>
                     ) : (
                       <div className={`max-w-[75%] space-y-1 ${msg.senderId === "me" ? "items-end" : "items-start"} flex flex-col`}>
                         <div className={`px-4 py-2.5 rounded-2xl text-[13px] font-medium shadow-sm leading-relaxed font-inter ${
                           msg.senderId === "me" 
-                            ? "bg-brand-primary text-white rounded-tr-none" 
+                            ? "bg-blue-600 text-white rounded-tr-none" 
                             : "bg-white text-slate-800 border border-slate-200 rounded-tl-none"
                         }`}>
                           {msg.text}
@@ -250,7 +250,7 @@ export default function MessagesPage() {
                         <div className="flex items-center gap-1.5 px-1">
                           <span className="text-[10px] font-medium text-slate-400 uppercase font-inter">{msg.time}</span>
                           {msg.senderId === "me" && (
-                            <CheckCheck className={`w-3 h-3 ${msg.status === "read" ? "text-brand-primary" : "text-slate-300"}`} />
+                            <CheckCheck className={`w-3 h-3 ${msg.status === "read" ? "text-blue-500" : "text-slate-300"}`} />
                           )}
                         </div>
                       </div>
@@ -272,7 +272,7 @@ export default function MessagesPage() {
 
             {/* Sticky Input */}
             <footer className="p-4 bg-white border-t border-slate-200">
-              <form onSubmit={handleSendMessage} className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl p-1 pr-2 transition-all focus-within:ring-2 focus-within:ring-brand-primary/10 focus-within:border-brand-primary/30 font-inter">
+              <form onSubmit={handleSendMessage} className="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-xl p-1 pr-2 transition-all focus-within:ring-2 focus-within:ring-blue-500/10 focus-within:border-blue-500/30 font-inter">
                 <button type="button" className="p-2 hover:bg-slate-200 rounded-lg transition-colors text-slate-400 group relative">
                   <Paperclip className="w-5 h-5" />
                   <div className="absolute bottom-full left-0 mb-2 bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap">
@@ -290,7 +290,7 @@ export default function MessagesPage() {
                   type="submit" 
                   className={`p-2 rounded-lg transition-all ${
                     newMessage.trim() 
-                      ? "bg-brand-primary text-white shadow-md hover:bg-brand-dark active:scale-95" 
+                      ? "bg-blue-600 text-white shadow-md hover:bg-blue-700 active:scale-95" 
                       : "bg-slate-200 text-slate-400 cursor-not-allowed"
                   }`}
                 >
@@ -316,7 +316,7 @@ export default function MessagesPage() {
                 <div className="pt-4 border-t border-slate-100">
                   <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1 font-poppins">Deadline</div>
                   <div className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-brand-primary" />
+                    <Clock className="w-4 h-4 text-blue-500" />
                     <span className="text-sm font-bold text-slate-900 font-inter">{selectedContact.deadline}</span>
                   </div>
                 </div>
@@ -333,15 +333,15 @@ export default function MessagesPage() {
             <section className="space-y-4">
               <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] font-poppins">Quick Actions</h3>
               <div className="space-y-2">
-                <button className="w-full flex items-center justify-between p-3 bg-white border border-slate-200 rounded-xl hover:border-brand-primary hover:text-brand-primary transition-all group">
+                <button className="w-full flex items-center justify-between p-3 bg-white border border-slate-200 rounded-xl hover:border-blue-500 hover:text-blue-600 transition-all group">
                   <span className="text-xs font-bold font-poppins">Request Milestone</span>
-                  <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-brand-primary transition-colors" />
+                  <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" />
                 </button>
-                <button className="w-full flex items-center justify-between p-3 bg-white border border-slate-200 rounded-xl hover:border-brand-primary hover:text-brand-primary transition-all group">
+                <button className="w-full flex items-center justify-between p-3 bg-white border border-slate-200 rounded-xl hover:border-blue-500 hover:text-blue-600 transition-all group">
                   <span className="text-xs font-bold font-poppins">Send Invoice</span>
-                  <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-brand-primary transition-colors" />
+                  <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" />
                 </button>
-                <button className="w-full flex items-center justify-between p-3 bg-brand-primary text-white rounded-xl hover:bg-brand-dark transition-all shadow-md active:scale-95">
+                <button className="w-full flex items-center justify-between p-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all shadow-md active:scale-95">
                   <span className="text-xs font-bold font-poppins">Mark as Completed</span>
                   <CheckCircle2 className="w-4 h-4" />
                 </button>
@@ -350,7 +350,7 @@ export default function MessagesPage() {
 
             <section className="pt-4">
               <div className="bg-emerald-50 border border-emerald-100 p-4 rounded-xl flex items-start gap-3">
-                <Shield className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                 <p className="text-[10px] font-medium text-emerald-800 leading-relaxed font-inter">
                   <strong>Assigne Protection:</strong> Your payments are secured in escrow until you approve the work.
                 </p>
